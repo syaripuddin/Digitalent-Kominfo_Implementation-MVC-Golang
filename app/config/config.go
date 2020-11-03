@@ -3,7 +3,7 @@ package config
 import (
 	"fmt"
 
-	"github.com/FadhlanHawali/Digitalent-Kominfo_Implementation-MVC-Golang/app/model"
+	"github.com/syaripuddin/Digitalent-Kominfo_Implementation-MVC-Golang/app/model"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

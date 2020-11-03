@@ -1,18 +1,19 @@
 package main
 
 import (
-	"github.com/FadhlanHawali/Digitalent-Kominfo_Implementation-MVC-Golang/app/config"
-	"github.com/FadhlanHawali/Digitalent-Kominfo_Implementation-MVC-Golang/app/controller"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/syaripuddin/Digitalent-Kominfo_Implementation-MVC-Golang/app/controller"
 )
 
 func main() {
-	db := config.DBInit()
-	inDB := &controller.InDB{DB: db}
-
 	router := gin.Default()
 	router.Use(cors.Default())
-	router.GET("/", inDB.CreateAccount)
-	router.Run(":8080")
+	router.POST("/api/v1/account/add", controller.CreateAccount)
+	router.POST("/api/v1/login", controller.Login)
+	router.GET("/api/v1/account", middleware.Auth, controller.GetAccount)
+	router.POST("/api/v1/transfer", middleware.Auth, controller.Transfer)
+	router.POST("/api/v1/withdraw", middleware.Auth, controller.Withdraw)
+	router.POST("/api/v1/deposit", middleware.Auth, controller.Deposit)
+	router.Run(":8081")
 }
